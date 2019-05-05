@@ -26,6 +26,7 @@ Every meaningful token, as a string, in the poem. All the values in poem_tokens,
 
 #### snippet_idx_map
 For each value in snippets, stores a list of numbers, the lines of the poem where that token can be found. 
+Dict where the key is a snippet string and the value is a list of index numbers that indicate the lines where that snippet can be found in the poem.
 
 ### Variables Relating to 1-Word Tokens
 #### poem_tokens
