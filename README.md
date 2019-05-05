@@ -74,34 +74,81 @@ to_be_verbs identify tokens to reject (am, are, is, was, were)
 Uses NLTK's pos_tag() function to determine grammar element of each token.
 
 ## Functions
-### quest_for_meaning()
+### Driving Function / main
+#### quest_for_meaning()
 The main driving function. 
 * Calls select_poem () to get a poem to process.
 * Initializes poem_lines, poem, poem_tokens, bigram_tokens, and trigram_tokens. After removing non-meaningful tokens from poem_tokens, bigram_tokens, and trigram_tokens, creates bigram_snippets, trigram_snippets, snippets, and snippet_idx_map. Allows the user to pick a task and calls the corresponding function. 
 * Tasks 1 - 4 ask the user to pick a 1-word snippet, a 2-word snippet, a 3-word snippet, and a 2- or 3-word snippet respectivley. Each line that snippet appears in is displayed to the terminal.
 * Task 5 asks the user to enter a regular expression. Each line that regex appears in is displayed to the terminal. 
 
-### select_poem()
+### Functions That Set-up the Initial Variables
+#### parse_poem_from_json(poem_dict)
+Takes the input form of the poem, a dictionary, and returns a string that contains the text of the poem. 
+
+#### get_poem_lines_for_snippets(snippet_tokens, poem_lines)
+Input: 
+* all snippets stored in a list of strings
+* all the lines of the poem as a list of strings
+
+Creates a mapping between snippets and the indexes to the poem lines they appear in. 
+
+#### find_all_snippets_on_same_lines(snippet_idx_map)
+Each set of snippets that appear on the same lines of the poem are stored in a list. Returns a list of all of these lists. 
+
+
+
+### Input Functions
+#### select_poem()
 For now, returns Walt Whitman's 'I SIng the Body Electric'. Future development will allow the user to select a poem.
 
-### parse_down_tuples(n-grams)
+#### pick_function ()
+allows the user to decide what to do
+
+#### pick_snippet(snippets)
+Given a list of snippets, the user selects one
+
+### Functions to Reduce Number of Snippets
+#### parse_down_tuples(n-grams)
 Rejects snippets (lists of tuples (bigrams or trigrams))
 
-### parse_down_tokens(tokens)
+#### parse_down_tokens(tokens)
 Rejects snippets (lists of strings)
+
+#### grammar_parse(token)
+Removes or keeps snippets based on the grammar type of tokens. For example, a 1-word token that is punctuation would be removed but a 1-word noun kept. Removes 'be verb' tokens. 
+
+### Functions that Generate Snippets
+#### make_snippet(tokens)
+If 1-word string, return it. For a tokenized string, put spaces between each token unless the preceeding token is punctuation. For example tokens: ',' 'the' and 'Soul' would form the snippet ", the Soul"
+
+#### make_snippets(list_of_tokens)
+Calls make_snippet () on each token in the list of tokens, appends the resulting snippets to a list of strings, and returns the list of snippets. 
 
 #### get_poem_lines_for_snippets(snippets, poem_lines)
 snippets are 1 - 3 words snippets (lists of strings)
 poem_lines have all lines of the poem in lists of strings
 for each snippet, store the indices of each line it appears in
 
-### pick_function ()
-allows the user to decide what to do
+### Output Functions
+#### print_poem_lines(line_idxs, poem_lines)
+For each index value in line_idxs, print its corresponding line in poem_lines
 
-### print_context(tokens, snippet_idx_map, poem_lines, poem)
+#### print_poem_context(snippet, poem)
+Not all snippets correspond to one line in the poem. Some snippets cross line boundaries. For those snippets, use a regular expression to find that snippet's context (surrounding text) and display it. 
+
+#### store_snippet_freqdist(tokens)
+Use NLTK's FreqDist to determine the frequency distribution of each snippet. Store them to a file, freqdist.txt, from most to least frequent. 
+
+#### print_context(tokens, snippet_idx_map, poem_lines, poem)
 tokens input are list of strings or list of tuples (bigrams or trigrams)
 snippet_idx_map stores list of lines snippet appears in for each snippet
 poem_lines: all the lines of the poem as a list of strings
 poem: whole poem as one string
 
 User selects a token. If snippet_idx_map's list of indices is not empty, use poem_lines and indices to display lines of the poem. If list of indices is empty - happens if the snippet crosses a poem line - uses regular expressions to search the poem and print some of the surrounding context of the snippet. 
+
+#### store_snippets_on_same_line(snippet_idx_map)
+Any snippets that appear on the same line are stored into a list. Writes each of these lists of snippets to two output files:
+1. matching_tokens.txt - human readable
+2. matching_tokens_json.txt - JSON file
