@@ -8,7 +8,7 @@ I defined meaningful words or phrases as
 ## Variables
 ### Variables Relating to the Poem as a Whole
 #### poem_json
-The poem - Walt Whitman's 'Leaves of Grass' - was imported from [The Poetry DB](http://poetrydb.org). The format of the poem coresponds to the value returned by the Poetry DB API. 
+The poem - Walt Whitman's 'I Sing the Body Electric' - was imported from [The Poetry DB](http://poetrydb.org). The format of the poem coresponds to the value returned by the Poetry DB API. 
 
 The dictionary format contains three elements:
 1. title key maps to a string, the title of the poem
@@ -49,7 +49,14 @@ A list of strings where each string is a three-word token. Basically poem_trigra
 ## Functionality
 ### Overview
 Get the poem from the Poetry DB API. Initialize variables. Remove the non-meaningful tokens from the lists of tokens. Create snippets for all meaningful tokens. For each snippet, store the lines it appears on in the poem. Allow the user to pick a task. 
-Tasks 1 - 5 allow the user to pick or enter a snippet and then display all the poem lines that contain that snippet. 
+
+Tasks 1 - 5 allow the user to pick or enter a snippet and then display all the poem lines that contain that snippet. The tasks mostly differ on the type of snippet (1-word, 2-words, 3-words, 2- and 3-words, user-entered word).
+
+Task 6 stores snippets which are on the same lines of the poem, and only the same lines of the poem, to an output file. For example, the following are all snippets from the first line of the poem: ['electric', 'SING the', 'Body electric', 'electric;', 'SING the Body', 'the Body electric', 'Body electric;']. Currently the data is stored to two output files:
+1. matching_tokens.txt for readability
+2. matching_tokens_json.txt a JSON file
+
+Task 7 stores a frequency distribution of each snippet to an output file: freqdist.txt
 
 ### Removing non-meaningful Tokens
 For 1-word tokens:
@@ -75,7 +82,7 @@ The main driving function.
 * Task 5 asks the user to enter a regular expression. Each line that regex appears in is displayed to the terminal. 
 
 ### select_poem()
-For now, returns Walt Whitman's 'Leaves of Grass'. Future development will allow the user to select a poem.
+For now, returns Walt Whitman's 'I SIng the Body Electric'. Future development will allow the user to select a poem.
 
 ### parse_down_tuples(n-grams)
 Rejects snippets (lists of tuples (bigrams or trigrams))
@@ -92,7 +99,7 @@ for each snippet, store the indices of each line it appears in
 allows the user to decide what to do
 
 ### print_context(tokens, snippet_idx_map, poem_lines, poem)
-tokens -> list of strings or list of tuples (bigrams or trigrams)
+tokens input are list of strings or list of tuples (bigrams or trigrams)
 snippet_idx_map stores list of lines snippet appears in for each snippet
 poem_lines: all the lines of the poem as a list of strings
 poem: whole poem as one string
