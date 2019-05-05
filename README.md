@@ -22,7 +22,7 @@ A list of strings where each string is a line of the poem.
 The whole poem as one single string. 
 
 #### snippets
-Every meaningful token, as a string, in the poem. All the values in poem_tokens, bigram_snippets, and trigram_snippets after they were parsed down. 
+List of strings where each string is a snippet (1 to 3 word phrase) in the poem. 
 
 #### snippet_idx_map
 For each value in snippets, stores a list of numbers, the lines of the poem where that token can be found. 
