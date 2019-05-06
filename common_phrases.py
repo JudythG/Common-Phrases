@@ -169,7 +169,12 @@ def parse_down_tokens(tokens):
         if grammar_parse(token) == False:
             keep_token = False
 
+        # part of apostrophe issue with word tokenizer function
         if token[0] == '’':
+            keep_token = False
+
+        # part of apostrophe issue with word tokenizer function
+        if token[0] == 's' or token[0] == 'd':
             keep_token = False
 
         if keep_token == True:
@@ -190,9 +195,17 @@ def parse_down_tuples(snippet_tokens):
         if len(snippet) == 3:
             if snippet[0] == '’' or snippet[2] == '’':
                 keep_snippet = False
+            if snippet[0] == 's' or snippet[2] == 's':
+                keep_snippet = False
+            if snippet[0] == 'd' or snippet[2] == 'd':
+                keep_snippet = False
         else:
             for token in snippet:
                 if token == '’':
+                    keep_snippet = False
+                if token == 's':
+                    keep_snippet = False
+                if token == 'd':
                     keep_snippet = False
 
         # if none of the tokens in the snippet are in the keep pile of 
