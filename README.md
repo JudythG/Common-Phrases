@@ -5,6 +5,13 @@ I defined meaningful words or phrases as
 * By frequency of the word / phrase: More frequent words / phrases are considred more meaningful. 
 * Grammar: nouns, verbs, adjectives, and adverbs are considred meaningful. Words such as 'the' or 'and' are not. 
 
+In coding this program, I was exploring NLTK's functions. This program uses:
+* word_tokenize() to generate 1-word tokens
+* bigrams() to generate 2-word tokens
+* trigrams() to generate 3-word tokens
+* FreqDist () to calculate the frequency of tokens in the text and sort those tokens by that frequency
+* pos_tag() to generate grammar type for each token in the poem
+
 ## Variables
 ### Variables Relating to the Poem as a Whole
 #### poem_json
