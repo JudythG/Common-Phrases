@@ -39,11 +39,7 @@ def make_snippet (tokens):
 
 # takes a list of tokens and generates a list of snippets
 def make_snippets(list_of_tokens):
-    list_of_snippets = []
-    for token in list_of_tokens:
-        snippet = make_snippet(token)
-        if snippet:
-            list_of_snippets.append(snippet)
+    list_of_snippets = [make_snippet(t) for t in list_of_tokens]
     return list_of_snippets
 
 # JTG: for now, assume one poem
