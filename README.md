@@ -159,3 +159,8 @@ User selects a token. If snippet_idx_map's list of indices is not empty, use poe
 Any snippets that appear on the same line are stored into a list. Writes each of these lists of snippets to two output files:
 1. matching_tokens.txt - human readable
 2. matching_tokens_json.txt - JSON file
+
+## Sources
+* [Natural Language Processing with Python](http://www.nltk.org/book/) for information on using NLTK
+* [Python Documentation](https://docs.python.org/3/)
+* [The Poetry DB](http://poetrydb.org) source of the poem analyzed. 
