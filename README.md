@@ -163,4 +163,5 @@ Any snippets that appear on the same line are stored into a list. Writes each of
 ## Sources
 * [Natural Language Processing with Python](http://www.nltk.org/book/) for information on using NLTK
 * [Python Documentation](https://docs.python.org/3/)
+* [pandas' DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html)
 * [The Poetry DB](http://poetrydb.org) source of the poem analyzed. 
