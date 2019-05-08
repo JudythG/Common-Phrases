@@ -160,6 +160,9 @@ Any snippets that appear on the same line are stored into a list. Writes each of
 1. matching_tokens.txt - human readable
 2. matching_tokens_json.txt - JSON file
 
+## My Fave
+I really like that I create lists of snippets that all are displayed on the same line because it leads to the interesting question of how join these snippets. For example, if the two snippets are 'Soul' and 'the Soul', I'd remove 'the Soul' and just leave 'Soul' in the list of snippets. That one's obvious but there are that are ambiguous.
+
 ## Future Work
 * Make the program Object Oriented. Variables that relate to the poem as a whole should be class variables, not passed as parameters. 
 * Allow users to select any poem from The Poetry DB. 
