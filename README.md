@@ -160,6 +160,19 @@ Any snippets that appear on the same line are stored into a list. Writes each of
 1. matching_tokens.txt - human readable
 2. matching_tokens_json.txt - JSON file
 
+## Future Work
+* Make the program Object Oriented. Variables that relate to the poem as a whole should be class variables, not passed as parameters. 
+* Allow users to select any poem from The Poetry DB. 
+* Allow users to select a poem, in the appropriate JSON format, from a file. To be honest, the main reason to make this change is to I can run Allen Ginsberg's 'Howl' through. 
+* There is a potential bug with regular expressions if the snippet contains a metacharacter. Fix it. 
+* When there are multiple snippets that all return the same lines, merge them down to one snippet. 
+* When searching 1-word tokens, lines are returned that contain that word within another word. 
+* The function find_all_snippets_on_a_line is O(n-squared). The frequency distribution for each snippet could be added to snippet_idx_map. Then only snippets that have the same frequency distribution would be compared. Also, if the frequency distribution equals 1, do not look for matches for that snippet's lines. 
+
+### Ideas for Merging Snippets
+1. Snippets that are part of a phrase could be merged into one longer phrase. For example, the repeated line "I'm with you in Rockland" from 'Howl' would generate a dozen snippets including "I'm with you", "with you in", and "you in Rockland". The snippet replacing all of those could be the entire phrase "I'm with you in Rockland". 
+2. Alternately, longer snippets could be merged down to a shorter phrase or word. For example, in 'I Sing the Body Electric' both 'the Soul' and 'Soul' return the same lines. These two phrases could be merged down to 'Soul'. Similarly, a snippet containing a word without punctuation could be preferred to one containing a word with punctuation. For example, a search on 'as' returns line 193 (word 'has'): Your mother—is she living? have you been much with her? and has she been much with you?
+
 ## Sources
 * [Natural Language Processing with Python](http://www.nltk.org/book/) for information on using NLTK
 * [Python Documentation](https://docs.python.org/3/)
